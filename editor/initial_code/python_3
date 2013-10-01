@@ -1,11 +1,19 @@
-def checkio(a, b):
-    """
-        sums two passed arguments
-    """
-    return None
+def checkio(landing_map):
+    #replace this for solution
+    return 0
 
 #These "asserts" using only for self-checking and not necessary for auto-testing
 if __name__ == '__main__':
-    assert checkio(3, 2) == 5
-    assert checkio(5, 7) == 12
-    print('Done')
+    assert checkio(['G']) == 1, 'One cell - one variant'
+    assert checkio(['GS',
+                    'GS']) == 4, 'Four good cells'
+    assert checkio(['GT',
+                    'GG']) == 2, 'Four cells, but with a tree'
+    assert checkio(['GGTGG',
+                    'TGGGG',
+                    'GSSGT',
+                    'GGGGT',
+                    'GWGGG',
+                    'RGTRT',
+                    'RTGWT',
+                    'WTWGR']) == 9, 'Classic'
