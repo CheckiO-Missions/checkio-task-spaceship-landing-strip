@@ -163,3 +163,7 @@ fieldset[disabled] .btn {
     width: 160px;
     vertical-align: top;
 }
+
+.tryit-content text {
+    cursor: default;
+}
