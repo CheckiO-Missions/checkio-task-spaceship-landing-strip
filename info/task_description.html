@@ -1,39 +1,79 @@
-<p>
-    <i>( Describe task in general )</i>
-</p>
+<div class="story">
+    <p> "Wow! That was a terrible landing!" Stephen was the first one to break the silence after the ship descended.</p>
 
-<p>
-    Sum two passed ints
-</p>
+    <p> "Who set up the landing vector?" asked Sofia as she emerged from a heap of cables and shook ashes off herself.
+        "Who borks it that badly? I bet that was the Odysseus’s last landing ever!" </p>
 
-<p style="text-align: center;">
-    <img class="for_info_only" title="example" src="{{MEDIA}}example.png" alt="example" width="392px"/>
-    <img class="for_editor_only" title="example" src="{{MEDIA}}example.png" alt="example" width="380px"/>
-</p>
+    <p> "I’m doing a systems check right now." said Nikola. He was at the computer, typing away furiously with his
+        famous <b>do not disturb me</b> look worn on his face. It seemed as though there were no computational errors.
+    </p>
 
-<p><i>( Explain input and output values )</i></p>
-<p>
-    <strong>Input: </strong> Two arguments. Both are int
-</p>
+    <p> “Well we’ve got loads of opportunity for adventure here!” Sofia said, making the best of a bad situation.</p>
 
-<p>
-    <strong>Output: </strong> Int. 
-</p>
+    <p> "I beg you--don’t tell me what a great opportunity it is. The trip has already started off in the best possible
+        manner." Stephen responded tersely.</p>
 
+    <p> "Fine..."</p>
 
+    <p> "Geez, now I understand why expeditions to these lands happen so rarely…"</p>
+
+    <p> "It won't take off," Nikola announced. Only he was able to shock the team so bluntly.</p>
+
+    <p> "What? The cabin is fine! We’ll just fix the damage and continue on our journey," Sofia started hopefully.</p>
+
+    <p> "It’s not going to work. The engine is pretty well fried. We don’t have all the necessary parts to fix it."</p>
+
+    <p> "Awesome!” Stephen said, his voice dripping with sarcasm. “So now we're stuck here for the rest of eternity
+        until we all bluescreen in the cold."</p>
+
+    <p> "Stephen, calm down," interrupted Sofia. "Is everything fine with the communications array? Can we call for
+        help?"</p>
+
+    <p> "It’s only working one way--we can only send data," Nikola started saying slowly as he tested something on the
+        computer. "We can't receive any data, so the receiver must be broken. I'll set the transmitter to continuously
+        send out a mayday signal."</p>
+
+    <p> "Okay, let’s do that. Now, in order to be saved by the emergency team, we’ll need to clean up a landing site as
+        much as possible." </p>
+
+    <p> "I'm already scanning the area and making a map to calculate the best place for them to land," Nikola said
+        agreeing to Sofia’s proposition.</p>
+
+    <p> "Great! And I get to clear out the landing area, right?" said Stephen then paused. "Just in advance, I want to
+        say that even though I am a handyman, I cannot move mountains or change the flow of rivers."</p>
+
+    <p> "Okay, I suppose we should take that into consideration. Now let's write a calculation module."</p>
+
+    <p> "Yeah, good idea. For now we can settle into this Rossum forsaken place." </p>
+</div>
+
+<p>The Robots have accidentally discovered a new island and want to create the largest rectangular field possible for a
+    spaceship landing strip. While surveying their land, they encountered a number of obstacles and decided to draw a
+    map. Indicate in each square of the map whether it contains grass (G), rock (R), water (W), shrubs (S), or trees
+    (T). While the grass can be mowed and the shrubs can be dug from the ground, the water, rocks, and trees cannot be
+    removed. Given these obstacles, determine the area of the largest possible rectangular field.</p>
+
+<p class="for_info_only" style="text-align: center;"><img src="{{ MEDIA }}spaceship_landing.png" alt=""/></p>
+<p class="for_editor_only" style="text-align: center;"><img src="{{ MEDIA }}spaceship_landing.png"
+                                                            alt=""
+                                                            width="380px"/></p>
+
+<p><strong>Input:</strong> An array with lines. Each array should contain letter characters which indicate the
+    conditions for each square of land (G, R, W, S, or T). The width of the map is indicated by the number of lines
+    within an array. The height of the map is indicated by the number of items within a line within the array.</p>
+
+<p><strong>Output: </strong>The maximum area of the largest possible rectangle that can be cleared.</p>
 
 <div class="for_info_only">
-    <p><i>( Put some usage examples )</i></p>
-    <p>
-        <strong>Example:</strong>
-    </p>
-    <pre class="brush: python">
-checkio(3, 2) == 5
-checkio(5, 7) == 12
-    </pre>
+    <p><strong>Example:</strong></p>
+<pre class="brush: python">checkio(['G']) == 1
+checkio(['GS','GS']) == 4
+checkio(['GT','GG']) == 2
+checkio(['GGTGG','TGGGG','GSSGT','GGGGT','GWGGG','RGTRT','RTGWT','WTWGR']) == 9
+</pre>
 </div>
 
 <p class="for_info_only">
     <strong>How it is used: </strong>
-    <i>(Here you can explain how it can be used in development and what is usage of this.)</i>
+    Image recognize systems.
 </p>
