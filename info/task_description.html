@@ -47,22 +47,28 @@
     <p> "Yeah, good idea. For now we can settle into this Rossum forsaken place." </p>
 </div>
 
-<p>The Robots have discovered a new island and accidentally crashed on it. TO survive, they need to create the largest rectangular field possible to make a
-    landing strip. While surveying the land, they encountered a number of obstacles which they marked on their
-    map. Each square of the map is marked according to wether it contains grass (G), rock (R), water (W), shrubs (S), or trees
-    (T). While the grass can be mowed and the shrubs can be dug from the ground, the water, rocks, and trees cannot be
-    removed with the tools at their disposal. Given these obstacles, they need your help to determine the area of the largest possible rectangular field.</p>
+<p>
+    The Robots have discovered a new island and accidentally crashed on it.
+    TO survive, they need to create the largest rectangular field possible to make a landing strip.
+    While surveying the land, they encountered a number of obstacles which they marked on their map.
+    Each square of the map is marked according to whether it contains grass (G), rock (R), water (W), shrubs (S), or trees (T).
+    While the grass can be mowed and the shrubs can be dug from the ground,
+    the water, rocks, and trees cannot be removed with the tools at their disposal.
+    Given these obstacles, they need your help to determine the area of the largest possible rectangular field.
+</p>
+
+<p>
+    The island map is represented as a list of strings.
+    Each list contains letter characters which indicate the conditions for each square of land (G, R, W, S, or T).
+    The map is rectangular.
+</p>
 
 <p class="for_info_only" style="text-align: center;"><img src="{{ MEDIA }}spaceship_landing.png" alt=""/></p>
-<p class="for_editor_only" style="text-align: center;"><img src="{{ MEDIA }}spaceship_landing.png"
-                                                            alt=""
-                                                            width="380px"/></p>
+<p class="for_editor_only" style="text-align: center;"><img src="{{ MEDIA }}spaceship_landing.png" alt="" width="380px"/></p>
 
-<p><strong>Input:</strong> An array with lines. Each array should contain letter characters which indicate the
-    conditions for each square of land (G, R, W, S, or T). The width of the map is indicated by the number of lines
-    within an array. The height of the map is indicated by the number of items within a line within the array.</p>
+<p><strong>Input:</strong> An island map as a list of strings.</p>
 
-<p><strong>Output: </strong>The maximum area of the largest possible rectangle that can be cleared.</p>
+<p><strong>Output: </strong>The maximum area of the largest possible rectangle that can be cleared as an integer.</p>
 
 <div class="for_info_only">
     <p><strong>Example:</strong></p>
@@ -76,4 +82,9 @@ checkio(['GGTGG','TGGGG','GSSGT','GGGGT','GWGGG','RGTRT','RTGWT','WTWGR']) == 9
 <p class="for_info_only">
     <strong>How it is used: </strong>
     Image recognition systems.
+</p>
+
+<p>
+    <strong>Precondition:</strong> 0 < |map| &lt; 10<br>
+    The map is rectangular.
 </p>
