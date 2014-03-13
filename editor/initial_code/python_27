@@ -2,18 +2,19 @@ def checkio(landing_map):
     #replace this for solution
     return 0
 
-#These "asserts" using only for self-checking and not necessary for auto-testing
+
 if __name__ == '__main__':
-    assert checkio(['G']) == 1, 'One cell - one variant'
-    assert checkio(['GS',
-                    'GS']) == 4, 'Four good cells'
-    assert checkio(['GT',
-                    'GG']) == 2, 'Four cells, but with a tree'
-    assert checkio(['GGTGG',
-                    'TGGGG',
-                    'GSSGT',
-                    'GGGGT',
-                    'GWGGG',
-                    'RGTRT',
-                    'RTGWT',
-                    'WTWGR']) == 9, 'Classic'
+    #These "asserts" using only for self-checking and not necessary for auto-testing
+    assert checkio([u'G']) == 1, 'One cell - one variant'
+    assert checkio([u'GS',
+                    u'GS']) == 4, 'Four good cells'
+    assert checkio([u'GT',
+                    u'GG']) == 2, 'Four cells, but with a tree'
+    assert checkio([u'GGTGG',
+                    u'TGGGG',
+                    u'GSSGT',
+                    u'GGGGT',
+                    u'GWGGG',
+                    u'RGTRT',
+                    u'RTGWT',
+                    u'WTWGR']) == 9, 'Classic'
