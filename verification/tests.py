@@ -285,6 +285,43 @@ TESTS = {
                 [1, 2, 1, 4],
                 [1, 2, 5, 4]
             ]
+        },
+        {
+            "input": [
+                "GGSSGGSSG",
+                "GGSSGGSSG",
+                "GGSSGGSSG",
+                "GGSSGGSSG",
+                "GGSSGGSSG",
+                "GGSSGGSSG",
+                "GGSSGGSSG",
+                "GGSSGGSSG",
+                "GGSSGGSSG",
+            ],
+            "answer": 81,
+            "explanation": [
+                [0, 0, 1, 9],
+                [0, 0, 9, 9],
+            ]
+        },
+        {
+            "input": [
+                "GGSSGGSSG",
+                "GWSSGGTSG",
+                "GGSSGGSSG",
+                "GGSSGGSSG",
+                "GGSSWWSSG",
+                "GGSSGGSSG",
+                "GGSSGGSSG",
+                "GRRRRRRSG",
+                "GGSSGGSSG",
+            ],
+            "answer": 20,
+            "explanation": [
+                [0, 0, 1, 9],
+                [0, 2, 4, 4],
+                [2, 0, 5, 4],
+            ]
         }
     ]
 }
