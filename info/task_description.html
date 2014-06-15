@@ -87,6 +87,7 @@ checkio(['GGTGG','TGGGG','GSSGT','GGGGT','GWGGG','RGTRT','RTGWT','WTWGR']) == 9
 </p>
 
 <p>
-    <strong>Precondition:</strong> 0 < |map| &lt; 10<br>
-    The map is rectangular.
+    <strong>Precondition:</strong><br>
+    0 &lt; len(landing_map) &lt; 10<br>
+    all(len(landing_map) == len(row) for row in landing_map)
 </p>
