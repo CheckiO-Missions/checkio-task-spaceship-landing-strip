@@ -1,19 +1,51 @@
-def checkio(landing_map):
-    #replace this for solution
+def checkio(area: list[str]) -> int:
+    # your code here
     return 0
 
+
 if __name__ == '__main__':
-    #These "asserts" using only for self-checking and not necessary for auto-testing
-    assert checkio(['G']) == 1, 'One cell - one variant'
-    assert checkio(['GS',
-                    'GS']) == 4, 'Four good cells'
-    assert checkio(['GT',
-                    'GG']) == 2, 'Four cells, but with a tree'
+    print("Example:")
+    print(checkio(['G']))
+
+    # These "asserts" are used for self-checking and not for an auto-testing
+    assert checkio(['G']) == 1
+    assert checkio(['GS', 'GS']) == 4
+    assert checkio(['GT', 'GG']) == 2
     assert checkio(['GGTGG',
-                    'TGGGG',
-                    'GSSGT',
-                    'GGGGT',
-                    'GWGGG',
-                    'RGTRT',
-                    'RTGWT',
-                    'WTWGR']) == 9, 'Classic'
+        'TGGGG',
+        'GSSGT',
+        'GGGGT',
+        'GWGGG',
+        'RGTRT',
+        'RTGWT',
+        'WTWGR']) == 9
+    assert checkio(['GSWGG', 'SGRST', 'WGSRS', 'RSSST']) == 4
+    assert checkio(['GSWGG',
+        'SGRST',
+        'WGSRS',
+        'RSSST',
+        'RGTWW']) == 5
+    assert checkio(['GSGSS',
+        'GWSRS',
+        'SWSTG',
+        'GGSGG',
+        'GGSGG']) == 10
+    assert checkio(['GWGWS',
+        'RSRGR',
+        'TTTTT',
+        'TGGGT',
+        'TGGGT']) == 6
+    assert checkio(['GGGGGG',
+        'GGGGGG',
+        'SSSSSS',
+        'SSSSSS',
+        'GGGGGG',
+        'GGGGGG']) == 36
+    assert checkio(['RRRRRRR',
+        'RGGGGGR',
+        'RGSSSGR',
+        'RGSSSGR',
+        'RGSSSGR',
+        'RGGGGGR',
+        'RRRRRRR']) == 25
+    print("Coding complete? Click 'Check' to earn cool rewards!")

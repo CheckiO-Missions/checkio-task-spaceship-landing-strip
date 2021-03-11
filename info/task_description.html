@@ -72,11 +72,35 @@
 
 <div class="for_info_only">
     <p><strong>Example:</strong></p>
-<pre class="brush: python">checkio(['G']) == 1
-checkio(['GS','GS']) == 4
-checkio(['GT','GG']) == 2
-checkio(['GGTGG','TGGGG','GSSGT','GGGGT','GWGGG','RGTRT','RTGWT','WTWGR']) == 9
+    {% if is_js %}
+    <pre class="brush: javascript">landingArea(['G']) == 1
+landingArea(['GS', 'GS']) == 4
+landingArea(['GT', 'GG']) == 2
+landingArea(['GGTGG',
+ 'TGGGG',
+ 'GSSGT',
+ 'GGGGT',
+ 'GWGGG',
+ 'RGTRT',
+ 'RTGWT',
+ 'WTWGR']) == 9
+landingArea(['GSWGG', 'SGRST', 'WGSRS', 'RSSST']) == 4
 </pre>
+{% else %}
+<pre class="brush: python">checkio(['G']) == 1
+checkio(['GS', 'GS']) == 4
+checkio(['GT', 'GG']) == 2
+checkio(['GGTGG',
+ 'TGGGG',
+ 'GSSGT',
+ 'GGGGT',
+ 'GWGGG',
+ 'RGTRT',
+ 'RTGWT',
+ 'WTWGR']) == 9
+checkio(['GSWGG', 'SGRST', 'WGSRS', 'RSSST']) == 4
+</pre>
+{% endif %}
 </div>
 
 <p class="for_info_only">

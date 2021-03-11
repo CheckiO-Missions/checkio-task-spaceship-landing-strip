@@ -1,38 +1,21 @@
-//Dont change it
-requirejs(['ext_editor_1', 'jquery_190', 'raphael_210'],
-    function (ext, $, TableComponent) {
+requirejs(['ext_editor_io', 'jquery_190', 'raphael_210'],
+    function (extIO, $) {
+        var colorOrange4 = "#F0801A";
+        var colorOrange3 = "#FA8F00";
+        var colorOrange2 = "#FAA600";
+        var colorOrange1 = "#FABA00";
 
-        var cur_slide = {};
+        var colorBlue4 = "#294270";
+        var colorBlue3 = "#006CA9";
+        var colorBlue2 = "#65A1CF";
+        var colorBlue1 = "#8FC7ED";
 
-        ext.set_start_game(function (this_e) {
-        });
+        var colorGrey4 = "#737370";
+        var colorGrey3 = "#9D9E9E";
+        var colorGrey2 = "#C5C6C6";
+        var colorGrey1 = "#EBEDED";
 
-        ext.set_process_in(function (this_e, data) {
-            cur_slide["in"] = data[0];
-        });
-
-        ext.set_process_out(function (this_e, data) {
-            cur_slide["out"] = data[0];
-        });
-
-        ext.set_process_ext(function (this_e, data) {
-            cur_slide.ext = data;
-            this_e.addAnimationSlide(cur_slide);
-            cur_slide = {};
-        });
-
-        ext.set_process_err(function (this_e, data) {
-            cur_slide['error'] = data[0];
-            this_e.addAnimationSlide(cur_slide);
-            cur_slide = {};
-        });
-
-        ext.set_animate_success_slide(function (this_e, options) {
-            var $h = $(this_e.setHtmlSlide('<div class="animation-success"><div></div></div>'));
-            this_e.setAnimationHeight(115);
-        });
-
-
+        var colorWhite = "#FFFFFF";
 
         var goodCell = "SG";
         var badCell = "WRT";
@@ -100,170 +83,112 @@ requirejs(['ext_editor_1', 'jquery_190', 'raphael_210'],
             return mapSet;
         }
 
+        var $tryit;
+
+        var io = new extIO({
+            multipleArguments: false,
+            functions: {
+                python: 'checkio',
+                js: 'landingArea'
+            },
+            animation: function ($expl, data) {
+
+                var checkioInput = data.in;
+                var rightResult = data.ext["answer"];
+                var userResult = data.out;
+                var result = data.ext["result"];
+                var result_addon = data.ext["result_addon"];
+                var explanation = data.ext["explanation"];
 
 
+                var canvas = Raphael($expl[0],
+                    zx * 2 + cellSize * checkioInput[0].length,
+                    zy * 2 + cellSize * checkioInput.length,
+                    0, 0);
+                var mapSet = createStrip(canvas, checkioInput);
+                var resultRect = canvas.rect(zx, zy, 0, 0).attr(attrPreResult);
 
-        ext.set_animate_slide(function (this_e, data, options) {
-            var $content = $(this_e.setHtmlSlide(ext.get_template('animation'))).find('.animation-content');
-            if (!data) {
-                console.log("data is undefined");
-                return false;
-            }
-
-            var checkioInput = data.in;
-
-            if (data.error) {
-                $content.find('.call').html('Fail: checkio(' + JSON.stringify(checkioInput) + ')');
-                $content.find('.output').html(data.error.replace(/\n/g, ","));
-
-                $content.find('.output').addClass('error');
-                $content.find('.call').addClass('error');
-                $content.find('.answer').remove();
-                $content.find('.explanation').remove();
-                this_e.setAnimationHeight($content.height() + 60);
-                return false;
-            }
-
-            var rightResult = data.ext["answer"];
-            var userResult = data.out;
-            var result = data.ext["result"];
-            var result_addon = data.ext["result_addon"];
-
-
-            //if you need additional info from tests (if exists)
-            var explanation = data.ext["explanation"];
-
-            $content.find('.output').html('&nbsp;Your result:&nbsp;' + JSON.stringify(userResult));
-
-            if (!result) {
-                $content.find('.call').html('Fail: checkio(' + JSON.stringify(checkioInput) + ')');
-                $content.find('.answer').html('Right result:&nbsp;' + JSON.stringify(rightResult));
-                $content.find('.answer').addClass('error');
-                $content.find('.output').addClass('error');
-                $content.find('.call').addClass('error');
-            }
-            else {
-                $content.find('.call').html('Pass: checkio(' + JSON.stringify(checkioInput) + ')');
-                $content.find('.answer').remove();
-            }
-            //Dont change the code before it
-
-            var canvas = Raphael($content.find(".explanation")[0],
-                zx * 2 + cellSize * checkioInput[0].length,
-                zy * 2 + cellSize * checkioInput.length,
-                0, 0);
-            var mapSet = createStrip(canvas, checkioInput);
-            var resultRect = canvas.rect(zx, zy, 0, 0).attr(attrPreResult);
-
-            for (var e = 0; e < explanation.length - 1; e++) {
+                for (var e = 0; e < explanation.length - 1; e++) {
+                    setTimeout(function() {
+                        var t = e;
+                        return function() {
+                            resultRect.animate({"x": zx + explanation[t][1] * cellSize,
+                                "y": zy + explanation[t][0] * cellSize,
+                                "width": explanation[t][3] * cellSize,
+                                "height": explanation[t][2] * cellSize}, delay);
+                        }
+                    }(), stepDelay * e);
+                }
                 setTimeout(function() {
                     var t = e;
                     return function() {
-                        resultRect.animate({"x": zx + explanation[t][1] * cellSize,
-                            "y": zy + explanation[t][0] * cellSize,
-                            "width": explanation[t][3] * cellSize,
-                            "height": explanation[t][2] * cellSize}, delay);
+                        resultRect.animate({"x": zx + explanation[e][1] * cellSize,
+                            "y": zy + explanation[e][0] * cellSize,
+                            "width": explanation[e][3] * cellSize,
+                            "height": explanation[e][2] * cellSize}, delay);
+                        resultRect.animate(attrResult, delay);
                     }
                 }(), stepDelay * e);
-            }
-            setTimeout(function() {
-                var t = e;
-                return function() {
-                    resultRect.animate({"x": zx + explanation[e][1] * cellSize,
-                        "y": zy + explanation[e][0] * cellSize,
-                        "width": explanation[e][3] * cellSize,
-                        "height": explanation[e][2] * cellSize}, delay);
-                    resultRect.animate(attrResult, delay);
-                }
-            }(), stepDelay * e);
+            },
+
+            retConsole: function(ret){
+                $tryit.find(".checkio-result-in").html(ret);
+            },
+
+            tryit: function(this_e) {
+                $tryit = this_e.extSetHtmlTryIt(this_e.getTemplate('tryit'));
+                var tMap = [
+                    "GSGSGS",
+                    "GSGSGS",
+                    "GSRTGS",
+                    "GSWRGS",
+                    "GSGSGS",
+                    "GSGSGS"
+                ];
 
 
-            this_e.setAnimationHeight($content.height() + 60);
+                var tCanvas = Raphael($tryit.find(".tryit-canvas")[0],
+                    zx * 2 + cellSize * tMap[0].length,
+                    zy * 2 + cellSize * tMap.length,
+                    0, 0);
+                var mapSet = createStrip(tCanvas, tMap);
 
-        });
-
-        var $tryit;
-//
-        ext.set_console_process_ret(function (this_e, ret) {
-            $tryit.find(".checkio-result-in").html(ret);
-        });
-
-        ext.set_generate_animation_panel(function (this_e) {
-
-            $tryit = $(this_e.setHtmlTryIt(ext.get_template('tryit')));
-            var tMap = [
-                "GSGSGS",
-                "GSGSGS",
-                "GSRTGS",
-                "GSWRGS",
-                "GSGSGS",
-                "GSGSGS"
-            ];
-
-
-            var tCanvas = Raphael($tryit.find(".tryit-canvas")[0],
-                zx * 2 + cellSize * tMap[0].length,
-                zy * 2 + cellSize * tMap.length,
-                0, 0);
-            var mapSet = createStrip(tCanvas, tMap);
-
-            mapSet.click(function(e) {
-                var i = this.mark[0];
-                var j = this.mark[1];
-                var cell = mapSet[i][j];
-                var ch = cell[1].attr().text;
-                if (goodCell.indexOf(ch) !== -1) {
-                    cell[1].attr("text",
-                        badCell[Math.floor(Math.random() * badCell.length)]);
-                    cell[0].attr(attrBadCell);
-                    cell[1].attr(attrBadText);
-                }
-                else {
-                    cell[1].attr("text",
-                        goodCell[Math.floor(Math.random() * goodCell.length)]);
-                    cell[0].attr(attrGoodCell);
-                    cell[1].attr(attrGoodText);
-                }
-            });
-
-            $tryit.find('.bn-check').click(function (e) {
-                var data = [];
-                for (var i = 0; i < mapSet.length; i++) {
-                    var row = "";
-                    for (var j=0; j < mapSet[i].length; j++){
-                        row += mapSet[i][j][1].attr().text;
-
+                mapSet.click(function(e) {
+                    var i = this.mark[0];
+                    var j = this.mark[1];
+                    var cell = mapSet[i][j];
+                    var ch = cell[1].attr().text;
+                    if (goodCell.indexOf(ch) !== -1) {
+                        cell[1].attr("text",
+                            badCell[Math.floor(Math.random() * badCell.length)]);
+                        cell[0].attr(attrBadCell);
+                        cell[1].attr(attrBadText);
                     }
-                    data.push(row);
-                }
-                this_e.sendToConsoleCheckiO(data);
-                e.stopPropagation();
-                return false;
-            });
+                    else {
+                        cell[1].attr("text",
+                            goodCell[Math.floor(Math.random() * goodCell.length)]);
+                        cell[0].attr(attrGoodCell);
+                        cell[1].attr(attrGoodText);
+                    }
+                });
 
+                $tryit.find('.bn-check').click(function (e) {
+                    var data = [];
+                    for (var i = 0; i < mapSet.length; i++) {
+                        var row = "";
+                        for (var j=0; j < mapSet[i].length; j++){
+                            row += mapSet[i][j][1].attr().text;
+
+                        }
+                        data.push(row);
+                    }
+                    this_e.extSendToConsoleCheckiO(data);
+                    e.stopPropagation();
+                    return false;
+                });
+            }
         });
-
-        var colorOrange4 = "#F0801A";
-        var colorOrange3 = "#FA8F00";
-        var colorOrange2 = "#FAA600";
-        var colorOrange1 = "#FABA00";
-
-        var colorBlue4 = "#294270";
-        var colorBlue3 = "#006CA9";
-        var colorBlue2 = "#65A1CF";
-        var colorBlue1 = "#8FC7ED";
-
-        var colorGrey4 = "#737370";
-        var colorGrey3 = "#9D9E9E";
-        var colorGrey2 = "#C5C6C6";
-        var colorGrey1 = "#EBEDED";
-
-        var colorWhite = "#FFFFFF";
-        //Your Additional functions or objects inside scope
-        //
-        //
-        //
-
-
+        io.start();
     }
 );
+

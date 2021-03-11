@@ -1,0 +1,54 @@
+import assert from "assert";
+
+function landingArea(area: string[]): number {
+    // your code here
+    return 0;
+}
+
+console.log('Example:');
+console.log(landingArea(['G']));
+
+// These "asserts" are used for self-checking
+assert.equal(landingArea(['G']), 1);
+assert.equal(landingArea(['GS', 'GS']), 4);
+assert.equal(landingArea(['GT', 'GG']), 2);
+assert.equal(landingArea(['GGTGG',
+	'TGGGG',
+	'GSSGT',
+	'GGGGT',
+	'GWGGG',
+	'RGTRT',
+	'RTGWT',
+	'WTWGR']), 9);
+assert.equal(landingArea(['GSWGG', 'SGRST', 'WGSRS', 'RSSST']), 4);
+assert.equal(landingArea(['GSWGG',
+	'SGRST',
+	'WGSRS',
+	'RSSST',
+	'RGTWW']), 5);
+assert.equal(landingArea(['GSGSS',
+	'GWSRS',
+	'SWSTG',
+	'GGSGG',
+	'GGSGG']), 10);
+assert.equal(landingArea(['GWGWS',
+	'RSRGR',
+	'TTTTT',
+	'TGGGT',
+	'TGGGT']), 6);
+assert.equal(landingArea(['GGGGGG',
+	'GGGGGG',
+	'SSSSSS',
+	'SSSSSS',
+	'GGGGGG',
+	'GGGGGG']), 36);
+assert.equal(landingArea(['RRRRRRR',
+	'RGGGGGR',
+	'RGSSSGR',
+	'RGSSSGR',
+	'RGSSSGR',
+	'RGGGGGR',
+	'RRRRRRR']), 25);
+
+console.log("Coding complete? Click 'Check' to earn cool rewards!");
+    
