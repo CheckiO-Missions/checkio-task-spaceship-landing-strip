@@ -66,7 +66,7 @@
 <p class="for_info_only" style="text-align: center;"><img src="{{ MEDIA }}spaceship_landing2.png" alt="strip" width="420px"/></p>
 <p class="for_editor_only" style="text-align: center;"><img src="{{ MEDIA }}spaceship_landing2.png" alt="strip" width="380px"/></p>
 
-<p><strong>Input:</strong> An island map as a list of strings.</p>
+<p><strong>Input:</strong> An island map as a {% if is_js %}array{% else %}list{% endif %} of strings.</p>
 
 <p><strong>Output: </strong>The maximum area of the largest possible rectangle that can be cleared as an integer.</p>
 
