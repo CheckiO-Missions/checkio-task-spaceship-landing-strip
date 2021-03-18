@@ -7,8 +7,8 @@ from tests import TESTS
 api.add_listener(
     ON_CONNECT,
     CheckiOReferee(
-    	tests=TESTS
+    	tests=TESTS,
 	    function_name={
 	        "python": "checkio",
 	        "js": "landingArea"
-	    },).on_ready)
+	    }).on_ready)
